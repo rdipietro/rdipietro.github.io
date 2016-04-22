@@ -37,7 +37,7 @@ div.cell {
 .text_cell h5,
 .text_cell h6 {
     font-family: 'Lustria', sans-serif;
-    font-weight: bold;
+    font-weight: 900;
     text-align: center;
 }
 
@@ -53,6 +53,10 @@ div.text_cell {
     font-size: 18px;
     line-height: 30px;
     width: 750px;
+}
+
+div.text_cell strong {
+    font-weight: 900;
 }
 
 div.code_cell {
