@@ -8,11 +8,11 @@
  */
 
 div #notebook {
-    width: 1000px
+    width: 1000px;
 }
 
 div #notebook-container {
-    width: 1000px
+    width: 1000px;
 }
 
 /*
@@ -21,7 +21,7 @@ div #notebook-container {
  */
 
 div.cell {
-    margin: auto
+    margin: auto;
 }
 
 /*
@@ -52,7 +52,7 @@ div.text_cell {
     font-family: 'Lato', sans-serif;
     font-size: 18px;
     line-height: 30px;
-    width: 750px;
+    width: 70ex;
 }
 
 div.text_cell strong {
@@ -68,7 +68,7 @@ li {
 }
 
 div.input_area {
-    background-color: #FCFCFC
+    background-color: #FCFCFC;
 }
 
 .code_cell pre {
@@ -77,9 +77,17 @@ div.input_area {
 }
 
 /*
+ * Remove the In[...] areas that mess up centering.
+ */
+
+div.prompt.input_prompt {
+    display: none;
+}
+
+/*
  * Remove the annoying pilcrows at the end of headers.
  */
 
 a.anchor-link {
-    display: none
+    display: none;
 }
