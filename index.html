@@ -63,10 +63,8 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -200,8 +198,8 @@ div#notebook {
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
 <li><a href="#about-me">About Me</a></li>
 <li><a href="#research">Research</a></li>
-<li><a href="#tutorials">Tutorials</a></li>
 <li><a href="#teaching">Teaching</a></li>
+<li><a href="#tutorials">Tutorials</a></li>
 <li><a href="#curriculum-vitae-publications">Curriculum Vitae / Publications</a></li>
 <li><a href="#some-fun">Some Fun</a></li>
 </ul>
@@ -215,8 +213,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="about-me"></a></p>
-<h2 id="About-Me">About Me<a class="anchor-link" href="#About-Me">&#182;</a></h2><p>I'm Rob DiPietro, a PhD student in the <a href="https://www.cs.jhu.edu/">Department of Computer Science at Johns Hopkins</a>, where I'm advised by <a href="http://www.cs.jhu.edu/~hager/">Gregory D. Hager</a> and <a href="https://www.cs.jhu.edu/faculty/nassir-navab/">Nassir Navab</a>. My research focuses on machine-learning methods for modeling sequential data and on applications of those methods to health care. I also have fun teaching and trying to break concepts up into clear and concise pieces.</p>
-<p>I was previously an associate research-staff member at <a href="http://www.ll.mit.edu/">MIT Lincoln Laboratory</a> and a student at <a href="http://www.northeastern.edu/">Northeastern University</a>. My research at MIT LL and as an electrical-engineering masters student focused on detecting chemicals and materials in hyperspectral imagery. My research as a physics undergraduate student focused on characterizing collections of magnetic nanoparticles.</p>
+<h2 id="About-Me">About Me<a class="anchor-link" href="#About-Me">&#182;</a></h2><p>I'm Rob DiPietro, a PhD student in the <a href="https://www.cs.jhu.edu/">Department of Computer Science at Johns Hopkins</a>, where I'm advised by <a href="http://www.cs.jhu.edu/~hager/">Gregory D. Hager</a>. My research focuses on machine-learning methods for modeling sequential data and on applications of those methods to health care. Previously, I was an associate research-staff member at <a href="http://www.ll.mit.edu/">MIT Lincoln Laboratory</a> and a BS/MS student at <a href="http://www.northeastern.edu/">Northeastern University</a>.</p>
 
 </div>
 </div>
@@ -227,7 +224,24 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="research"></a></p>
-<h2 id="Research">Research<a class="anchor-link" href="#Research">&#182;</a></h2><p>My research is centered around machine-learning methods for modeling sequential data, and I'm especially interested in recurrent neural networks and attention-based approaches. From an applications perspective, I focus on health care. For example, <a href="http://www.nejm.org/doi/full/10.1056/NEJMsa1300625">operative skill is connected to postoperative complications</a>, and <a href="http://www.ncbi.nlm.nih.gov/pubmed/19789010">current training practices need to improve</a>. Is it possible to automatically analyze trainee performance and automatically provide frequent, object feedback?</p>
+<h2 id="Research">Research<a class="anchor-link" href="#Research">&#182;</a></h2><p>My research is centered around machine-learning methods for modeling sequential data, especially recurrent neural networks and attention-based approaches. From an applications perspective, I focus on health care. For example, <a href="http://www.nejm.org/doi/full/10.1056/NEJMsa1300625">operative skill is connected to postoperative complications</a>, and <a href="http://www.ncbi.nlm.nih.gov/pubmed/19789010">current training practices need to improve</a>. Is it possible to automatically assess performance and automatically provide frequent, objective feedback during training?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="teaching"></a></p>
+<h2 id="Teaching">Teaching<a class="anchor-link" href="#Teaching">&#182;</a></h2><h3 id="Johns-Hopkins-University">Johns Hopkins University<a class="anchor-link" href="#Johns-Hopkins-University">&#182;</a></h3><ul>
+<li><strong>Recipient of the Excellence in Teaching Award from the Department of Computer Science.</strong> Spring, 2016.</li>
+<li><strong>Instructor for EN.500.111, HEART: Machine Learning for Surgical Workflow Analysis.</strong> In this course, students are exposed to basic machine-learning concepts and to some applications to surgical workflow analysis. Fall, 2015.</li>
+<li><strong>Teaching Assistant for EN.600.676, Machine Learning: Data to Models.</strong> In this course, students learn about probabilistic graphical models. They are exposed to the junction-tree algorithm, variational inference, Markov chain Monte carlo, etc. Spring, 2015.</li>
+<li><strong>Co-Instructor for EN.600.120, Intermediate Programming.</strong> In this course, students learn how to design programs, how to write code that's efficient but simple, and how to debug code when it's not working (C and C++). For more information, see Prof. Yair Amir's <a href="http://www.cnds.jhu.edu/courses/cs120/">course page</a>. Spring, 2014.</li>
+<li><strong>Instructor for EN.600.101, MATLAB for Data Analytics.</strong> In this course, students with no prior programming experience learn to analyze and visualize data using MATLAB. Intersession, 2014.</li>
+</ul>
 
 </div>
 </div>
@@ -239,24 +253,10 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="tutorials"></a></p>
 <h2 id="Tutorials">Tutorials<a class="anchor-link" href="#Tutorials">&#182;</a></h2><ul>
-<li><a href="http://rdipietro.github.io/tensorflow-scan-examples">Using TensorFlow's scan function to build a recurrent neural network from scratch</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a id="teaching"></a></p>
-<h2 id="Teaching">Teaching<a class="anchor-link" href="#Teaching">&#182;</a></h2><ul>
-<li><strong>Spring, 2016. Johns Hopkins University.</strong> Received the Excellence in Teaching Award from the Department of Computer Science.</li>
-<li><strong>Fall, 2015. Johns Hopkins University. Instructor, Machine Learning for Surgical Workflow Analysis.</strong> In this course, students are exposed to basic machine-learning concepts and to some applications to surgical workflow analysis. About half of the course is taught thinking through problems using IPython notebooks.</li>
-<li><strong>Spring, 2015. Johns Hopkins University. Teaching Assistant, Machine Learning: Data to Models.</strong> In this course, students learn about probabilistic graphical models and various exact inference and approximate inference techniques.</li>
-<li><strong>Spring, 2014. Johns Hopkins University. Co-Instructor, Intermediate Programming.</strong> In this course, students learn how to design programs, how to write code that's efficient but simple, and how to debug code when it's not working (C and C++). For more information, see Prof. Yair Amir's <a href="http://www.cnds.jhu.edu/courses/cs120/">course page</a>.</li>
-<li><strong>Intersession, 2014. Johns Hopkins University. Instructor, MATLAB for Data Analytics.</strong> In this course, students with no prior programming experience learn to analyze and visualize data using MATLAB.</li>
+<li>You Already Understand Recurrent Neural Networks. Main point: if you already understand feed-forward networks, then you already understand recurrent networks. Coming soon.</li>
+<li>Let's Talk About Feed-Forward Neural Networks. An introduction to feed-forward networks with emphasis on computation graphs. Coming soon.</li>
+<li>Let's Talk About Cross-Entropy Loss. Gentle introduction to cross-entropy loss for classification, and its relationship to log likelihood. Coming soon.</li>
+<li><a href="http://rdipietro.github.io/tensorflow-scan-examples">TensorFlow Scan Examples</a>. Includes building, training, and evaluating a recurrent neural network from scratch.</li>
 </ul>
 
 </div>

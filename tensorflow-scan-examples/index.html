@@ -185,7 +185,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="TensorFlow-Scan-Examples">TensorFlow Scan Examples<a class="anchor-link" href="#TensorFlow-Scan-Examples">&#182;</a></h1><h4 id="By-Rob-DiPietro-&#8211;-Version-0.31-&#8211;-April-24,-2016.">By <a href="http://rdipietro.github.io">Rob DiPietro</a> &#8211; Version 0.31 &#8211; April 24, 2016.<a class="anchor-link" href="#By-Rob-DiPietro-&#8211;-Version-0.31-&#8211;-April-24,-2016.">&#182;</a></h4>
+<h1 id="TensorFlow-Scan-Examples">TensorFlow Scan Examples<a class="anchor-link" href="#TensorFlow-Scan-Examples">&#182;</a></h1><h4 id="By-Rob-DiPietro-&#8211;-Version-0.32-&#8211;-April-28,-2016.">By <a href="http://rdipietro.github.io">Rob DiPietro</a> &#8211; Version 0.32 &#8211; April 28, 2016.<a class="anchor-link" href="#By-Rob-DiPietro-&#8211;-Version-0.32-&#8211;-April-28,-2016.">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -218,6 +218,7 @@ div#notebook {
 </ul>
 </li>
 <li><a href="#some-final-thoughts">Some Final Thoughts</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 
 </div>
@@ -229,16 +230,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="overview"></a></p>
-<h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>scan</code> was <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/functional_ops.py">recently made available</a> in TensorFlow.</p>
+<h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><p><code>scan</code> was <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/functional_ops.py">recently made available</a> in TensorFlow.</p>
 <p><code>scan</code> lets us write loops inside a computation graph, allowing backpropagation and all.
 We could explicitly unroll the loops ourselves, creating new graph nodes for each loop
 iteration, but then the number of iterations is fixed instead of dynamic, and graph
@@ -258,16 +250,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="hard-coding-the-cumulative-sum"></a></p>
-<h2 id="Hard-Coding-the-Cumulative-Sum">Hard Coding the Cumulative Sum<a class="anchor-link" href="#Hard-Coding-the-Cumulative-Sum">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's just start with code:</p>
+<h2 id="Hard-Coding-the-Cumulative-Sum">Hard Coding the Cumulative Sum<a class="anchor-link" href="#Hard-Coding-the-Cumulative-Sum">&#182;</a></h2><p>Let's just start with code:</p>
 
 </div>
 </div>
@@ -335,16 +318,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="learning-the-cumulative-sum"></a></p>
-<h2 id="Learning-the-Cumulative-Sum">Learning the Cumulative Sum<a class="anchor-link" href="#Learning-the-Cumulative-Sum">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now a more complex example: we'll build a recurrent neural network and <em>learn</em> the cumulative-sum function from data.</p>
+<h2 id="Learning-the-Cumulative-Sum">Learning the Cumulative Sum<a class="anchor-link" href="#Learning-the-Cumulative-Sum">&#182;</a></h2><p>Now a more complex example: we'll build a recurrent neural network and <em>learn</em> the cumulative-sum function from data.</p>
 
 </div>
 </div>
@@ -393,16 +367,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="generating-inputs-and-targets"></a></p>
-<h3 id="Generating-Inputs-and-Targets">Generating Inputs and Targets<a class="anchor-link" href="#Generating-Inputs-and-Targets">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>First let's write a function for generating input, target sequences, one pair at a time. We'll limit ourselves to inputs with independent time steps, drawn from a standard normal distribution.</p>
+<h3 id="Generating-Inputs-and-Targets">Generating Inputs and Targets<a class="anchor-link" href="#Generating-Inputs-and-Targets">&#182;</a></h3><p>First let's write a function for generating input, target sequences, one pair at a time. We'll limit ourselves to inputs with independent time steps, drawn from a standard normal distribution.</p>
 <p>Each sequence is 2-D with time on the first axis and inputs or targets on the second. (This way it'd be easy to generalize to the case of multiple inputs/targets per time step.)</p>
 
 </div>
@@ -449,16 +414,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="defining-the-rnn-model-from-scratch"></a></p>
-<h3 id="Defining-the-RNN-Model-from-Scratch">Defining the RNN Model from Scratch<a class="anchor-link" href="#Defining-the-RNN-Model-from-Scratch">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next let's define the RNN model. The code is a bit verbose because it's meant to be self explanatory, but the pieces are simple:</p>
+<h3 id="Defining-the-RNN-Model-from-Scratch">Defining the RNN Model from Scratch<a class="anchor-link" href="#Defining-the-RNN-Model-from-Scratch">&#182;</a></h3><p>Next let's define the RNN model. The code is a bit verbose because it's meant to be self explanatory, but the pieces are simple:</p>
 <ul>
 <li>The update for the vanilla RNN is $h_t = \tanh( W_h h_{t-1} + W_x x_t + b )$.</li>
 <li><code>_vanilla_rnn_step</code> is the core of the vanilla RNN: it applies this update by taking in a previous hidden state along with a current input and producing a new hidden state. (The only difference below is that both sides of the equation are transposed, and each variable is replaced with its transpose.)</li>
@@ -590,16 +546,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="defining-an-optimizer"></a></p>
-<h3 id="Defining-an-Optimizer">Defining an Optimizer<a class="anchor-link" href="#Defining-an-Optimizer">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next let's write an optimizer class. We'll use vanilla gradient descent after gradient "clipping," according to the method described by <a href="http://arxiv.org/abs/1211.5063">Pascanu, Mikolov, and Bengio</a>.</p>
+<h3 id="Defining-an-Optimizer">Defining an Optimizer<a class="anchor-link" href="#Defining-an-Optimizer">&#182;</a></h3><p>Next let's write an optimizer class. We'll use vanilla gradient descent after gradient "clipping," according to the method described by <a href="http://arxiv.org/abs/1211.5063">Pascanu, Mikolov, and Bengio</a>.</p>
 <p>The gradient-clipping method is simple and could instead be called gradient scaling: if the global norm is smaller than <code>max_global_norm</code>, do nothing. Otherwise, rescale all gradients so that the global norm becomes <code>max_global_norm</code>.</p>
 <p>What is the global norm? It's just the norm over <em>all</em> gradients, as if they were concatenated together to form one global vector.</p>
 
@@ -661,16 +608,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="training"></a></p>
-<h3 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next let's define and run our training function. This is where we'll run the main optimization loop and export TensorBoard summaries.</p>
+<h3 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h3><p>Next let's define and run our training function. This is where we'll run the main optimization loop and export TensorBoard summaries.</p>
 
 </div>
 </div>
@@ -782,16 +720,7 @@ to <code>[1, 3, 5, 7]</code> (approximately).</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="testing-qualitatively"></a></p>
-<h3 id="Testing-Qualitatively">Testing Qualitatively<a class="anchor-link" href="#Testing-Qualitatively">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally let's write a function to test the trained RNN qualitatively: we'll plot the original inputs (random real numbers), the ground-truth target (the cumulative sum), and our trained RNN's predictions (hopefully matching the cumulative sum).</p>
+<h3 id="Testing-Qualitatively">Testing Qualitatively<a class="anchor-link" href="#Testing-Qualitatively">&#182;</a></h3><p>Finally let's write a function to test the trained RNN qualitatively: we'll plot the original inputs (random real numbers), the ground-truth target (the cumulative sum), and our trained RNN's predictions (hopefully matching the cumulative sum).</p>
 
 </div>
 </div>
@@ -7847,16 +7776,7 @@ Q 45.0625 54.296875 48.78125 52.59375
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="ideas-for-playing-with-the-code"></a></p>
-<h3 id="Ideas-for-Playing-with-the-Code">Ideas for Playing with the Code<a class="anchor-link" href="#Ideas-for-Playing-with-the-Code">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If you'd like to, you can download this notebook and experiment with the code yourself. Here are a few questions to help spark a some ideas:</p>
+<h3 id="Ideas-for-Playing-with-the-Code">Ideas for Playing with the Code<a class="anchor-link" href="#Ideas-for-Playing-with-the-Code">&#182;</a></h3><p>If you'd like to, you can download this notebook and experiment with the code yourself. Here are a few questions to help spark a some ideas:</p>
 <ul>
 <li><strong>How many hidden units are needed?</strong> The cumulative sum can be computed using a <em>linear</em> transformation at each time step with just one hidden unit: we just initialize it to $0.0$ and then add $x_t$ at each time step. This is <em>not</em> the solution that the RNN learned (we used 256 hidden units, and each is squashed between -1.0 and 1.0 at each time step). Try reducing the hidden layer size by factors of 2, and see if/when performance takes a hit.</li>
 <li><strong>How sensitive is training to the initial learning rate?</strong> Try varying the initial learning rate above by one order of magnitude at a time. Would you say that performance depends heavily on this parameter?</li>
@@ -7873,7 +7793,14 @@ Q 45.0625 54.296875 48.78125 52.59375
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="some-final-thoughts"></a></p>
-<h2 id="Some-Final-Thoughts">Some Final Thoughts<a class="anchor-link" href="#Some-Final-Thoughts">&#182;</a></h2>
+<h2 id="Some-Final-Thoughts">Some Final Thoughts<a class="anchor-link" href="#Some-Final-Thoughts">&#182;</a></h2><p>Aside the simple <code>scan</code> example, we built and trained a vanilla RNN from scratch. It is written with simplicity in mind and is largely a toy example. Here are some reasons why:</p>
+<ul>
+<li><strong>We're using a batch size of 1.</strong> This is inefficient: it's analogous to performing 20 different vector-vector multiplies to multiply one vector by twenty others, instead of performing one matrix-vector multiply.</li>
+<li><strong>We're using one hidden layer.</strong> We could easily extend the above code to handle multiple layers: we'd run <code>scan</code> to get the first layer, then run it again to get the second layer, and so on. (The states of the previous layer become the inputs to the next layer.)</li>
+<li><strong>The vanilla RNN isn't often used because it has trouble learning.</strong> In practice we'd replace the vanilla-RNN block with a long short-term memory (LSTM) block or a gated recurrent unit (GRU) block, both of which were designed to avoid the vanishing gradient problem, or perhaps one could use the recent <a href="http://arxiv.org/abs/1504.00941">identity-initialization-plus-ReLU modification of the vanilla RNN</a>.</li>
+<li><strong>We're using full backpropagation through time, performing a complete forward, backward pass for <em>each</em> gradient update.</strong> This means that the number of updates per time is low, leading to longer training times. An alternative is to use truncated backpropagation through time, updating after shorter forward-backward passes in time, but still capturing long-term dependencies by carrying the hidden states over from pass to pass.</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -7882,13 +7809,8 @@ Q 45.0625 54.296875 48.78125 52.59375
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Aside the simple <code>scan</code> example, we built and trained a vanilla RNN from scratch. It is written with simplicity in mind and is largely a toy example. Here are some reasons why:</p>
-<ul>
-<li><strong>We're using a batch size of 1.</strong> This is inefficient: it's analogous to performing 20 different vector-vector multiplies to multiply one vector by twenty others, instead of performing one matrix-vector multiply.</li>
-<li><strong>We're using one hidden layer.</strong> We could easily extend the above code to handle multiple layers: we'd run <code>scan</code> to get the first layer, then run it again to get the second layer, and so on. (The states of the previous layer become the inputs to the next layer.)</li>
-<li><strong>The vanilla RNN isn't often used because it has trouble learning.</strong> In practice we'd replace the vanilla-RNN block with a long short-term memory (LSTM) block or a gated recurrent unit (GRU) block, both of which were designed to avoid the vanishing gradient problem, or perhaps one could use the recent <a href="http://arxiv.org/abs/1504.00941">identity-initialization-plus-ReLU modification of the vanilla RNN</a>.</li>
-<li><strong>We're using full backpropagation through time, performing a complete forward, backward pass for <em>each</em> gradient update.</strong> This means that the number of updates per time is low, leading to longer training times. An alternative is to use truncated backpropagation through time, updating after shorter forward-backward passes in time, but still capturing long-term dependencies by carrying the hidden states over from pass to pass.</li>
-</ul>
+<p><a id="acknowledgements"></a></p>
+<h2 id="Acknowledgements">Acknowledgements<a class="anchor-link" href="#Acknowledgements">&#182;</a></h2><p>I'd like to thank my advisor, <a href="http://www.cs.jhu.edu/~hager/">Gregory D. Hager</a>, who directs the <a href="http://cirl.lcsr.jhu.edu/">Computational Interaction and Robotics Laboratory</a> and the <a href="http://malonecenter.jhu.edu/">Malone Center for Engineering in Healthcare</a> at Johns Hopkins University, for being supportive of this work.</p>
 
 </div>
 </div>
