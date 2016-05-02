@@ -227,10 +227,10 @@ div#notebook {
 <p><a id="introduction"></a></p>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p><img src="images/classification_images.png" alt="Classification Images"></p>
 <p>When we develop a model for probabilistic classification, we aim to map the model's inputs to probabilistic <em>predictions</em>, and we often <em>train</em> our model by incrementally adjusting the model's parameters so that our predictions get closer and closer to <em>ground-truth probabilities.</em></p>
-<p>In this post, we'll focus on models that assume that classes mutually exclusive. For example, if we're interested in determining whether an image is best described as a landscape, <em>or</em> as a house, <em>or</em> as something else, then our model might accept an image as input and produce three numbers as output, each representing the probability of a single class.</p>
+<p>In this post, we'll focus on models that assume that classes mutually exclusive. For example, if we're interested in determining whether an image is best described as a landscape <em>or</em> as a house <em>or</em> as something else, then our model might accept an image as input and produce three numbers as output, each representing the probability of a single class.</p>
 <p>During training, we might put in an image of a landscape, and we hope that our model produces predictions that are close to the ground-truth class probabilities $y = (1.0, 0.0, 0.0)^T$. If our model predicts a different distribution, say $\hat{y} = (0.4, 0.1, 0.5)^T$, then we'd like to nudge the parameters so that $\hat{y}$ gets closer to $y$.</p>
-<p>But what exactly do we mean by "gets closer to"?</p>
-<p>This post aims to describe cross entropy, one reasonable measure of the difference between two distributions $\hat{y}$ and $y$, and aims to show why it's a good choice for classification loss, the objective function we'd like to minimize during training.</p>
+<p>But what exactly do we mean by "gets closer to"? In particular, how should we measure the difference between $\hat{y}$ and $y$?</p>
+<p>This post describes one possible measure, <em>cross entropy</em>, and describes why it's reasonable for the task of classification.</p>
 
 </div>
 </div>
@@ -293,16 +293,16 @@ $$ \mbox{KL}(y~||~\hat{y})
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="predictive-power"></a></p>
 <h2 id="Predictive-Power">Predictive Power<a class="anchor-link" href="#Predictive-Power">&#182;</a></h2><p><img src="images/predict.jpg" alt="Fortune Teller"></p>
-<p>After our discussion above, maybe we're happy with using cross entropy as a way to measure the difference between two distributions $y$ and $\hat{y}$.</p>
-<p>But let's look at another approach.</p>
+<p>After our discussion above, maybe we're happy with using cross entropy to measure the difference between two distributions $y$ and $\hat{y}$, and with using the total cross entropy over all training examples as our loss. In particular, if we let $n$ index training examples, the overall loss would be</p>
+$$ H(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \sum_n H(y^{(n)}, \hat{y}^{(n)}) $$<p>But let's look at another approach.</p>
 <p>What if we want our objective function to be a direct measure of our model's predictive power, at least with respect to our training data?</p>
 <p>One common approach is to tune our parameters so that the <em>likelihood</em> of our data under the model is maximized. Since for classification we often use a <a href="https://en.wikipedia.org/wiki/Discriminative_model">discriminative model</a>, our "data" often just consists of the labels we're trying to predict. A model that often predicts the ground-truth labels given the inputs might be useful; a model that often fails to predict the ground-truth labels isn't useful.</p>
-<p>Because we usually assume that our samples are <a href="http://math.stackexchange.com/questions/466927/independent-identically-distributed-iid-random-variables">independent and identically distributed</a>, the likelihood over all of our examples is a product of the individual likelihoods:</p>
-$$ L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \prod_n L(y^{(n)}, \hat{y}^{(n)}) $$<p>For example, in the image-classification example above, if we had five training images, {landscape, something else, landscape, house, something else}, then the overall likelihood would just be</p>
-$$ L(\{y^{(1)}, y^{(2)}, y^{(3)}, y^{(4)}, y^{(5)}\}, \{\hat{y}^{(1)}, \hat{y}^{(2)}, \hat{y}^{(3)}, \hat{y}^{(4)}, \hat{y}^{(5)}\}) = \hat{y}^{(1)}_1 \, \hat{y}^{(2)}_3 \, \hat{y}^{(3)}_1 \, \hat{y}^{(4)}_2 \, \hat{y}^{(5)}_3 $$<p>Here, the superscripts are just the training examples' indices, and as a reminder, the $i$-th entry of $\hat{y}$ is the predicted probability for the $i$-th class. Where do the $\hat{y}$ subscripts come from? From the ground truth $y$'s! They tell us what the true classes are.</p>
-<p>Maybe the last section made us happy with minimizing cross entropy during training, which over the entire dataset would be</p>
-$$ H(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \sum_n H(y^{(n)}, \hat{y}^{(n)}) $$<p>But are we still happy?</p>
-<p>What if we should instead maximize the likelihood $L(\{y^{(n)}\}, \{\hat{y}^{(n)}\})$ of our data?</p>
+<p>Because we usually assume that our samples are <a href="http://math.stackexchange.com/questions/466927/independent-identically-distributed-iid-random-variables">independent and identically distributed</a>, the likelihood over all of our examples decomposes into a product over the likelihoods of <em>individual</em> examples:</p>
+$$ L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \prod_n L(y^{(n)}, \hat{y}^{(n)}) $$<p>And what's the likelihood of the $n$-th example? It's just the particular entry of $\hat{y}^{(n)}$ that corresponds to the ground-truth label specified by $y^{(n)}$!</p>
+<p>Going back to the original example, if the first training image is of a landscape, then $y^{(1)} = (1.0, 0.0, 0.0)^T$, which tells us that the likelihood $L(y^{(1)}, \hat{y}^{(1)})$ is just the first entry of $\hat{y}^{(1)} = (0.4, 0.1, 0.5)^T$, which is $y^{(1)}_1 = 0.4$.</p>
+<p>To keep going with this example, let's assume we have a total of four training images, with labels {landscape, something else, landscape, house}, giving us ground-truth distributions $y^{(1)} = (1.0, 0.0, 0.0)^T$, $y^{(2)} = (0.0, 0.0, 1.0)^T$, $y^{(3)} = (1.0, 0.0, 0.0)^T$, and $y^{(4)} = (0.0, 1.0, 0.0)^T$. Our model would predict four <em>other</em> distributions $\hat{y}^{(1)}$, $\hat{y}^{(2)}$, $\hat{y}^{(3)}$, and $\hat{y}^{(4)}$, and the overall likelihood would just be</p>
+$$ L(\{y^{(1)}, y^{(2)}, y^{(3)}, y^{(4)}\}, \{\hat{y}^{(1)}, \hat{y}^{(2)}, \hat{y}^{(3)}, \hat{y}^{(4)}\}) = \hat{y}^{(1)}_1 \, \hat{y}^{(2)}_3 \, \hat{y}^{(3)}_1 \, \hat{y}^{(4)}_2 $$<p>Maybe the last section made us happy with minimizing cross entropy during training, but are we still happy?</p>
+<p>Why shouldn't we instead maximize the likelihood $L(\{y^{(n)}\}, \{\hat{y}^{(n)}\})$ of our data?</p>
 
 </div>
 </div>
@@ -315,8 +315,8 @@ $$ H(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \sum_n H(y^{(n)}, \hat{y}^{(n)}) $$<p>But
 <p><a id="unified-loss"></a></p>
 <h2 id="Unified-Loss">Unified Loss<a class="anchor-link" href="#Unified-Loss">&#182;</a></h2><p><img src="images/tape_measure.jpg" alt="Tape Measure"></p>
 <p>Let's play a bit with the likelihood expression above.</p>
-<p>First, since the likelihood is nonnegative and the logarithm is monotonic, we know that maximizing the likelihood is equivalent to maximizing the log likelihood, which is in turn equivalent to <em>minimizing</em> the negative log likelihood</p>
-$$ -\log L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = -\sum_n \log L(y^{(n)}, \hat{y}^{(n)}) $$<p>But $\log L(y^{(n)}, \hat{y}^{(n)})$, the log likelihood of $y^{(n)}$, is just the log of a particular entry of $\hat{y}^{(n)}$. In fact, it's the same entry for which $y$ is 1.0. We can therefore rewrite the log likelihood in the following funny way:</p>
+<p>First, since the logarithm is monotonic, we know that maximizing the likelihood is equivalent to maximizing the log likelihood, which is in turn equivalent to <em>minimizing</em> the negative log likelihood</p>
+$$ -\log L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = -\sum_n \log L(y^{(n)}, \hat{y}^{(n)}) $$<p>But from our discussion above, we also know that the log likelihood of $y^{(n)}$ is just the log of a particular entry of $\hat{y}^{(n)}$, in fact <em>the</em> entry $i$ which satisfies $y^{(n)}_i = 1.0$. We can therefore rewrite the log likelihood for the $n$-th training example in the following funny way:</p>
 $$ \log L(y^{(n)}, \hat{y}^{(n)}) = \sum_i y^{(n)}_i \log \hat{y}^{(n)}_i $$<p>which gives us an overall negative log likelihood of</p>
 $$ - \log L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = -\sum_n \sum_i y^{(n)}_i \log \hat{y}^{(n)}_i $$<p>Starting to look familiar? This is precisely cross entropy, summed over all training examples:</p>
 $$ -\log L(\{y^{(n)}\}, \{\hat{y}^{(n)}\}) = \sum_n \big[-\sum_i y_i \log \hat{y}^{(n)}_i\big] = \sum_n H(y^{(n)}, \hat{y}^{(n)})$$
