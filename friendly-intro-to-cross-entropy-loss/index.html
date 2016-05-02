@@ -227,11 +227,10 @@ div#notebook {
 <p><a id="introduction"></a></p>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p><img src="images/classification_images.png" alt="Classification Images"></p>
 <p>When we develop a model for probabilistic classification, we aim to map the model's inputs to probabilistic <em>predictions</em> that are indicative of reality, and we often <em>train</em> our model by incrementally adjusting the model's parameters so that our predictions get closer and closer to <em>ground-truth probabilities.</em></p>
-<p>In this post, we'll focus on models that assume that classes mutually exclusive.</p>
-<p>For example, if we're interested in determining whether an image is best described as a landscape, as a house, or as something else, then our model might accept an image as input and produce three numbers as output, each representing the probability of a single class. In this case, the model assumes that the image is described as a landscape <em>or</em> a house <em>or</em> something else.</p>
+<p>In this post, we'll focus on models that assume that classes mutually exclusive. For example, if we're interested in determining whether an image is best described as a landscape, as a house, or as something else, then our model might accept an image as input and produce three numbers as output, each representing the probability of a single class. In this case, the model assumes that the image is described as a landscape <em>or</em> a house <em>or</em> something else.</p>
 <p>During training, we might put in an image of a landscape, and we hope that our model produces predictions that are close to the ground-truth class probabilities $y = (1.0, 0.0, 0.0)^T$. If our model predicts a different distribution, say $\hat{y} = (0.4, 0.1, 0.5)^T$, then we'd like to nudge the parameters so that $\hat{y}$ gets closer to $y$.</p>
 <p>But what exactly do we mean by "gets closer to"?</p>
-<p>The goal of this post is to describe a meaningful difference between $\hat{y}$ and $y$ in this context.</p>
+<p>The goal of this post is to introduce cross-entropy loss, a measure the difference between two distributions $\hat{y}$ and $y$, that we can minimize during training.</p>
 
 </div>
 </div>
