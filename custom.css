@@ -95,3 +95,11 @@ div.prompt.input_prompt {
 a.anchor-link {
     display: none;
 }
+
+/*
+ * Do not underline links.
+ */
+
+a, u {
+    text-decoration: none !important;
+}
